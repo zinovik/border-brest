@@ -5,12 +5,12 @@ const getDate = (daysShift) =>
 
 const formatDate = (date) =>
   `${String(date.getDate()).padStart(2, "0")}.${String(
-    date.getMonth() + 1
+    date.getMonth() + 1,
   ).padStart(2, "0")}.${date.getFullYear()}`;
 
 const getFormattedDates = () =>
   [-6, -5, -4, -3, -2, -1, 0, 1].map((daysShift) =>
-    formatDate(getDate(daysShift))
+    formatDate(getDate(daysShift)),
   );
 
 const getBorderLinesForDate = async (formattedDate) => {
@@ -23,7 +23,7 @@ const getBorderLinesForDate = async (formattedDate) => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: `ppr=brest&date=${formattedDate}`,
-    }
+    },
   );
 
   lines = await response.json();
@@ -42,18 +42,18 @@ const formatBorderLines = (borderLines) => {
       if (borderLinesForDate.length === 0) return acc;
 
       const borderLinesForDateFormatted = `
-            <h4>${borderLinesForDate[1].date}</h4>
+            <h4>${borderLinesForDate[0].date}</h4>
             ${[...borderLinesForDate.reverse()]
               .map(
                 (borderLinesForTime) =>
-                  `<div><strong>${borderLinesForTime.time}</strong> | ${borderLinesForTime.cars} cars / ${borderLinesForTime.buses} buses</div>`
+                  `<div><strong>${borderLinesForTime.time}</strong> | ${borderLinesForTime.cars} cars / ${borderLinesForTime.buses} buses</div>`,
               )
               .join("\n")}
         `;
 
       return acc + borderLinesForDateFormatted;
     },
-    ""
+    "",
   );
 
   return `<!DOCTYPE html>
@@ -73,7 +73,7 @@ functions.http("main", async (_req, res) => {
   console.log("Triggered!");
 
   const borderLines = await Promise.all(
-    getFormattedDates().map((date) => getBorderLinesForDate(date))
+    getFormattedDates().map((date) => getBorderLinesForDate(date)),
   );
   const response = formatBorderLines(borderLines);
 
