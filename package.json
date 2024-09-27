@@ -10,7 +10,7 @@
     "scripts": {
         "test": "echo \"Tests are not implemented yet\"",
         "dev": "npx @google-cloud/functions-framework --target=main --source=src",
-        "deploy": "cp package*.json src && gcloud functions deploy border-brest --gen2 --trigger-http --runtime nodejs20 --entry-point=main --allow-unauthenticated --region=europe-central2 --source=src --project zinovik-project"
+        "deploy": "cp package*.json src && gcloud functions deploy border-brest --gen2 --trigger-http --runtime nodejs20 --entry-point=main --allow-unauthenticated --region=europe-central2 --source=src --project zinovik-project --service-account=border-brest@zinovik-project.iam.gserviceaccount.com"
     },
     "dependencies": {
         "@google-cloud/functions-framework": "3.3.0"
