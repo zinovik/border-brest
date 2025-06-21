@@ -65,7 +65,12 @@ const formatBorderLines = (borderLines) => {
           <meta name="description" content="Border Brest"/>
           <style>body { font-size: 150%; }</style>
       </head>
-      <body><h3>Border Brest</h3>${borderLinesFormatted}</body>
+      <body>
+          <div><a href="https://granica.gov.pl/index_wait.php">granica.gov.pl/index_wait.php</a></div>
+          <h3>Border Brest</h3>
+          ${borderLinesFormatted}
+          <div><a href="https://gpk.gov.by/situation-at-the-border/arkhiv-ocheredey">gpk.gov.by/situation-at-the-border/arkhiv-ocheredey</a></div>
+      </body>
   </html>`;
 };
 
